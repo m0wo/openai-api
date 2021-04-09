@@ -2,7 +2,6 @@
 
 const config = require('./config'),
     axios = require('axios');
-const { ByteLevelBPETokenizer } = require('tokenizers');
 
 class OpenAI {
     constructor(api_key) {
@@ -44,15 +43,6 @@ class OpenAI {
 
     complete(opts) {
         return this._send_request(opts);
-    }
-
-    encode(str) {
-        return ByteLevelBPETokenizer.fromOptions({
-            vocabFile: './data/gpt2_vocab_file.json',
-            mergesFile: './data/gpt2_merges_file.txt',
-        }).then((tokenizer) => {
-            return tokenizer.encode(str)
-        })
     }
 
     search(opts) {
